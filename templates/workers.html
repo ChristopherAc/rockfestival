@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form method="POST" action="/admin/workers/add_worker">
+    <input pattern=".{10,10}" required type="text" name="personid" placeholder="ÅÅMMDDXXX">
+    <input pattern=".{1,30}" required type="text" name="name" placeholder="Förnamn och efternamn">
+    <input pattern=".{3,30}" required type="text" name="address" placeholder="Adress">
+    <input type="submit">
+  </form>
+  <table>
+  <tr>
+    <th><a href="/admin/workers/personid">Personnummer</a></th>
+    <th><a href="/admin/workers/name">Namn</a></th>
+    <th><a href="/admin/workers/address">Adress</a></th>
+  </tr>
+  {% for worker in workers %}
+
+  <tr>
+    {% for attribute in worker %}
+    <td> {{attribute}}</td>
+    {%endfor%}
+  </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

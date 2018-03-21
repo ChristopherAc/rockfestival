@@ -32,7 +32,21 @@ class DbOne:
     def initialize(self):
         print ('initializing..')
         # Kalla på sql här
+    def get_all(self, table):
+        self.cursor.execute("select * from {} ".format(table))
+        result = self.cursor.fetchall()
+        return result
 
+    def get_all_ordered(self,table,attr):
+        self.cursor.execute('select * from {} order by ({})'.format(table,attr));
+        result = self.cursor.fetchall()
+        return result
+
+    def insert_all_into(self,table,*args):
+        # print(args)
+        # print('insert into {} values {}'.format(table,args))
+        self.cursor.execute('insert into {} values {}'.format(table,args))
+        self.conn.commit()
 # class  Worker:
 #
 #     def get_all():
